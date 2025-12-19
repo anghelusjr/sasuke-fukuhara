@@ -12,7 +12,7 @@ export default function Hero() {
                     Your beauty, My passion. Rebonding, coloring, curls & more!
                 </p>
                 <a
-                    href="#services"
+                    href="#contact"
                     className="inline-block bg-white text-gray-600 font-semibold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors"
                 >
                     Contact me
