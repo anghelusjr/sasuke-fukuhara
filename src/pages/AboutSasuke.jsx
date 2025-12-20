@@ -1,9 +1,32 @@
 import sasuke from "../assets/sasuke-fukuhara.webp";
 import award from "../assets/sasuke-award.webp";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function AboutSalon() {
   const [showFull, setShowFull] = useState(false);
+
+  // 🔥 HANDLE PHONE BACK BUTTON
+  useEffect(() => {
+    if (showFull) {
+      // push fake state para hindi mag-back page
+      window.history.pushState({ modal: true }, "");
+    }
+
+    const handleBack = (event) => {
+      if (showFull) {
+        event.preventDefault();
+        setShowFull(false);
+      }
+    };
+
+    window.addEventListener("popstate", handleBack);
+    return () => window.removeEventListener("popstate", handleBack);
+  }, [showFull]);
+
+  // ❗ Optional: disable scroll when modal open
+  useEffect(() => {
+    document.body.style.overflow = showFull ? "hidden" : "auto";
+  }, [showFull]);
 
   return (
     <section className="bg-white py-20" id="about">
@@ -41,6 +64,8 @@ export default function AboutSalon() {
           <p className="text-gray-600 mb-4">
             After 12 years, trust me your hair is safe, your confidence is going up, and most importantly… I’m not turning you into a meme!
           </p>
+
+          {/* Award Thumbnail */}
           <div className="md:w-1/2">
             <div className="w-full max-w-md mx-auto overflow-hidden rounded-xl shadow-lg mt-10 cursor-pointer">
               <img
@@ -51,12 +76,16 @@ export default function AboutSalon() {
               />
             </div>
 
+            {/* Fullscreen Modal */}
             {showFull && (
               <div
                 className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 cursor-pointer"
                 onClick={() => setShowFull(false)}
               >
-                <div className="relative max-w-4xl w-full px-6">
+                <div
+                  className="relative max-w-4xl w-full px-6"
+                  onClick={(e) => e.stopPropagation()} // prevent close pag cliniclick ang image area
+                >
                   {/* Close Button */}
                   <button
                     className="absolute top-4 right-4 text-white text-3xl font-bold"
@@ -74,8 +103,6 @@ export default function AboutSalon() {
                 </div>
               </div>
             )}
-
-
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import AboutSalon from "./pages/AboutSasuke";
 import Services from "./pages/Services";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
+import {ReviewsList} from "./components/DisplayReviews";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <AboutSalon />
       <Services />
       <Gallery />
+      <ReviewsList />
       <Contact />
     </div>
   );

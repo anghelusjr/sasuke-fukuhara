@@ -72,9 +72,10 @@ export default function Services() {
               <img
                 src={s.img}
                 alt={s.title}
-                className="w-full h-80 object-cover rounded-lg mb-4"
+                className="w-full h-80 object-cover rounded-lg mb-4 hover:scale-102 transition-all ease-in duration-150"
               />
               <h3 className="text-xl font-semibold">{s.title}</h3>
+              <p className="text-gray-400 font-medium">View more</p>
             </div>
           ))}
         </div>
