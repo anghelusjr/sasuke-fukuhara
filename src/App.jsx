@@ -5,6 +5,7 @@ import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import Login from "./components/Login";
 import ReviewsList from "./components/Review";
+import FacebookSDK from "./components/FacebookSDK";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <Services />
       <Gallery />
       <ReviewsList />
+      <FacebookSDK />
       <Login/>
       <Contact />
     </div>
