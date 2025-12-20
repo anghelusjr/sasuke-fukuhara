@@ -1,30 +1,59 @@
-import { useState } from "react";
-import { db, auth } from "./firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+// src/components/ReviewsList.jsx
+import { useEffect, useState } from "react";
+import { db } from "../firebase";
+import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 
-export function ReviewForm() {
-  const [reviewText, setReviewText] = useState("");
+export default function ReviewsList() {
+  const [reviews, setReviews] = useState([]);
 
-  const handleSubmit = async () => {
-    if (!auth.currentUser) return alert("Please login first!");
-
-    await addDoc(collection(db, "reviews"), {
-      userId: auth.currentUser.uid,
-      userName: auth.currentUser.email,
-      reviewText,
-      createdAt: serverTimestamp()
-    });
-
-    setReviewText("");
-    alert("Review submitted!");
-  };
+  useEffect(() => {
+    const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+    const unsubscribe = onSnapshot(q, (snapshot) =>
+      setReviews(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+    );
+    return () => unsubscribe();
+  }, []);
 
   return (
-    <div>
-      <textarea value={reviewText} onChange={e => setReviewText(e.target.value)} placeholder="Write your review" />
-      <button onClick={handleSubmit}>Submit Review</button>
+    <div className="flex flex-col items-center w-full space-y-4 mt-6 py-20">
+        <h2> </h2>
+      {reviews.map((r) => (
+        <div
+          key={r.id}
+          className="bg-white p-4 rounded-2xl shadow-md max-w-md w-full flex flex-col items-center gap-2"
+        >
+          {/* User info */}
+          <div className="flex items-center gap-3">
+            {r.userPhoto && (
+              <a href={r.userProfile || "#"} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={r.userPhoto}
+                  alt={r.userName}
+                  className="w-12 h-12 rounded-full"
+                />
+              </a>
+            )}
+            <strong className="text-gray-800">{r.userName}</strong>
+          </div>
+
+          {/* Star rating */}
+          {r.stars && (
+            <div className="flex">
+              {Array.from({ length: 5 }, (_, i) => (
+                <span
+                  key={i}
+                  className={`text-yellow-400 ${i < r.stars ? "" : "text-gray-300"}`}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Review text */}
+          <p className="text-gray-700 text-center">{r.reviewText}</p>
+        </div>
+      ))}
     </div>
   );
 }
-
-export default ReviewForm;

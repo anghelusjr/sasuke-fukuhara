@@ -3,7 +3,8 @@ import AboutSalon from "./pages/AboutSasuke";
 import Services from "./pages/Services";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
-import {ReviewsList} from "./components/DisplayReviews";
+import Login from "./components/Login";
+import ReviewsList from "./components/Review";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       <Services />
       <Gallery />
       <ReviewsList />
+      <Login/>
       <Contact />
     </div>
   );
