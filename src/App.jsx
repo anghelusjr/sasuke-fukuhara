@@ -7,7 +7,7 @@ import Login from "./components/Login";
 import ReviewsList from "./components/Review";
 import FacebookSDK from "./components/FacebookSDK";
 
-export default function App() {
+export default function App() { 
   return (
     <div className="font-sans text-gray-800">
       <Hero />
