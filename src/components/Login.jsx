@@ -100,7 +100,7 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start bg-gray-100 px-4 py-10 space-y-6">
+    <div className=" flex flex-col items-center justify-start bg-gray-100 px-4 py-10 space-y-6">
       <div className="bg-white p-6 rounded-2xl shadow-lg max-w-2xl w-full space-y-4">
         {/* User Info */}
         <div className="flex items-center gap-4">
