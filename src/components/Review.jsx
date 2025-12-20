@@ -16,7 +16,9 @@ export default function ReviewsList() {
 
   return (
     <div className="flex flex-col items-center w-full space-y-4 mt-6 py-20">
-        <h2> </h2>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 text-center my-6">
+        What My Customers Say.
+      </h2>
       {reviews.map((r) => (
         <div
           key={r.id}

@@ -115,7 +115,7 @@ export default function Login() {
               key={i}
               type="button"
               onClick={() => setStars(i + 1)}
-              className={`text-2xl ${i < stars ? "text-yellow-400" : "text-gray-300"}`}
+              className={`cursor-pointer text-2xl ${i < stars ? "text-yellow-400" : "text-gray-300"}`}
             >
               ★
             </button>
@@ -135,7 +135,7 @@ export default function Login() {
         {/* Submit Button */}
         <button
           onClick={submitReview}
-          className="w-full bg-blue-400 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+          className="w-full bg-blue-400 text-white py-2 rounded-lg hover:bg-blue-700 transition cursor-pointer"
         >
           Submit Review
         </button>
