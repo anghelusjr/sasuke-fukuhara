@@ -94,19 +94,6 @@ export default function Login() {
             />
             <span>{loading ? "Signing in..." : "Continue with Google"}</span>
           </button>
-
-          <button
-            onClick={() => handleLogin(new FacebookAuthProvider())}
-            disabled={loading}
-            className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-700 transition"
-          >
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
-              alt="Facebook"
-              className="w-5 h-5"
-            />
-            <span>{loading ? "Signing in..." : "Continue with Facebook"}</span>
-          </button>
         </div>
       </div>
     );
