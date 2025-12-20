@@ -15,14 +15,14 @@ export default function ReviewsList() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center w-full space-y-4 mt-6 py-20">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 text-center my-6">
+    <div className="flex flex-col items-center w-full space-y-4 mt-6 py-20 px-5">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 text-center my-6 pb-10">
         What My Customers Say.
       </h2>
       {reviews.map((r) => (
         <div
           key={r.id}
-          className="bg-white p-4 rounded-2xl shadow-md max-w-md w-full flex flex-col items-center gap-2"
+          className="bg-white p-4 rounded-2xl shadow-md max-w-2xl w-full flex flex-col items-center gap-2"
         >
           {/* User info */}
           <div className="flex items-center gap-3">
@@ -44,7 +44,7 @@ export default function ReviewsList() {
               {Array.from({ length: 5 }, (_, i) => (
                 <span
                   key={i}
-                  className={`text-yellow-400 ${i < r.stars ? "" : "text-gray-300"}`}
+                  className={`text-yellow-400 text-2xl ${i < r.stars ? "" : "text-gray-300"}`}
                 >
                   ★
                 </span>
