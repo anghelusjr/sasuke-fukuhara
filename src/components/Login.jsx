@@ -3,12 +3,10 @@ import { useState, useEffect } from "react";
 import { auth, db } from "../firebase";
 import {
   GoogleAuthProvider,
-  FacebookAuthProvider,
   signInWithPopup,
   onAuthStateChanged,
 } from "firebase/auth";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import ReviewsList from "./Review";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);

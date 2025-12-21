@@ -27,6 +27,14 @@ export default function Contact() {
             className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
           />
 
+          <input
+            type="tel"
+            placeholder="Your Mobile"
+            name="Mobile Number"
+            className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+          />
+
+
           {/* Services - Checkboxes */}
           <div className="flex flex-col items-start gap-2 p-3 border border-gray-300 rounded-lg">
             <p className="font-semibold text-gray-700 mb-1">Select Services:</p>
