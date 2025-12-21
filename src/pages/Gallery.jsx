@@ -14,7 +14,7 @@ export default function Gallery() {
   ]
 
   const images2 = [
-    gallery3, gallery4, gallery5
+    gallery4, gallery5, gallery3
   ]
 
   const [currentSlide, setCurrentSlide] = useState(0);
