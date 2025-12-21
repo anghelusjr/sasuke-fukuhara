@@ -73,7 +73,7 @@ export default function Login() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="flex items-center justify-center bg-gray-100 py-20 px-4">
         <div className="bg-white p-8 rounded-2xl shadow-lg max-w-sm w-full space-y-6">
           <h2 className="text-2xl font-bold text-center text-gray-800">
             Login to Leave a Review
