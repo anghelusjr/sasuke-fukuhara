@@ -13,7 +13,7 @@ export default function Gallery() {
     gallery1, gallery2, gallery3
   ]
 
-   const images2 = [
+  const images2 = [
     gallery3, gallery4, gallery5
   ]
 
@@ -74,10 +74,12 @@ export default function Gallery() {
       <section className="py-20 bg-gray-50" id="gallery">
         <div className="max-w-6xl mx-auto px-6 md:px-12 text-center">
 
-          {/* Inline flex gallery with horizontal scroll */}
-          <div className="flex gap-6 overflow-x-auto scrollbar-hide py-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-4">
             {images2.map((src, idx) => (
-              <div key={idx} className="flex-shrink-0 w-80 rounded-xl shadow-lg overflow-hidden">
+              <div
+                key={idx}
+                className="rounded-xl shadow-lg overflow-hidden"
+              >
                 <img
                   src={src}
                   alt={`Gallery ${idx + 1}`}
@@ -86,8 +88,11 @@ export default function Gallery() {
               </div>
             ))}
           </div>
+
         </div>
       </section>
+
+
     </section>
   );
 }
