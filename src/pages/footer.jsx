@@ -11,7 +11,7 @@ export default function Footer() {
         <p className="text-sm">
           Website by{" "}
           <a
-            href="https://angelbuenavista.com"
+            href="https://modern-portfolio-two-beta.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
