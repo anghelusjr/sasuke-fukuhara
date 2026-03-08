@@ -49,7 +49,7 @@ export default function Services() {
   const openLightbox = (i) => {
     window.history.pushState({ modal: true }, "");
     setLightboxIndex(i);
-    setFormStatus(""); // reset form status each time modal opens
+    setFormStatus("");
   };
 
   const closeLightbox = () => {
@@ -61,10 +61,7 @@ export default function Services() {
     e.preventDefault();
     const formData = new FormData(e.target);
 
-    // Set _replyto dynamically
     formData.set("_replyto", formData.get("email"));
-
-    // Optional: Custom subject for easier inbox tracking
     formData.set("_subject", `New Service Request: ${formData.get("service")}`);
 
     setFormStatus("Sending...");
@@ -88,8 +85,14 @@ export default function Services() {
   };
 
   const slideVariants = {
-    left: { hidden: { x: -100, opacity: 0 }, visible: { x: 0, opacity: 1, transition: { duration: 0.6 } } },
-    right: { hidden: { x: 100, opacity: 0 }, visible: { x: 0, opacity: 1, transition: { duration: 0.6 } } },
+    left: {
+      hidden: { x: -100, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: { duration: 0.6 } },
+    },
+    right: {
+      hidden: { x: 100, opacity: 0 },
+      visible: { x: 0, opacity: 1, transition: { duration: 0.6 } },
+    },
   };
 
   return (
@@ -107,13 +110,16 @@ export default function Services() {
             return (
               <motion.div
                 key={i}
-                className={`flex flex-col md:flex-row items-center ${isEven ? "" : "md:flex-row-reverse"} gap-8 md:gap-12`}
+                className={`flex flex-col md:flex-row items-center ${
+                  isEven ? "" : "md:flex-row-reverse"
+                } gap-10 md:gap-14`}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
               >
+                {/* IMAGE */}
                 <motion.div
-                  className="md:w-1/2 rounded-2xl overflow-hidden shadow-lg cursor-pointer"
+                  className="w-full md:w-1/2 rounded-2xl overflow-hidden shadow-lg cursor-pointer"
                   whileHover={{ scale: 1.03 }}
                   onClick={() => openLightbox(i)}
                   variants={variant}
@@ -121,14 +127,25 @@ export default function Services() {
                   <img
                     src={s.img}
                     alt={s.title}
-                    className="w-full h-80 md:h-[400px] object-cover rounded-xl"
+                    className="w-full h-[260px] md:h-[380px] lg:h-[420px] object-cover"
                   />
                 </motion.div>
 
-                <motion.div className="md:w-1/2 space-y-4 text-left" variants={variant}>
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-800">{s.title}</h3>
-                  <p className="text-gray-700">{s.desc}</p>
-                  <p className="text-gray-900 font-extrabold text-lg">{s.price}</p>
+                {/* TEXT */}
+                <motion.div
+                  className="w-full md:w-1/2 space-y-4 text-left"
+                  variants={variant}
+                >
+                  <h3 className="text-3xl md:text-4xl font-bold text-gray-800">
+                    {s.title}
+                  </h3>
+
+                  <p className="text-gray-700 leading-relaxed">{s.desc}</p>
+
+                  <p className="text-gray-900 font-extrabold text-lg">
+                    {s.price}
+                  </p>
+
                   <button
                     className="cursor-pointer mt-2 text-gray-800 hover:text-gray-900 underline font-semibold"
                     onClick={() => openLightbox(i)}
@@ -141,7 +158,7 @@ export default function Services() {
           })}
         </div>
 
-        {/* Lightbox with Form */}
+        {/* LIGHTBOX */}
         <AnimatePresence>
           {lightboxIndex !== null && (
             <motion.div
@@ -174,55 +191,56 @@ export default function Services() {
                 />
 
                 <div className="p-6 text-left text-gray-800">
-                  <h3 className="text-2xl font-bold mb-2">{services[lightboxIndex].title}</h3>
-                  <p className="text-gray-700 mb-2">{services[lightboxIndex].desc}</p>
-                  <p className="font-extrabold text-gray-900 mb-4">{services[lightboxIndex].price}</p>
+                  <h3 className="text-2xl font-bold mb-2">
+                    {services[lightboxIndex].title}
+                  </h3>
 
-                  {/* Form */}
+                  <p className="text-gray-700 mb-2">
+                    {services[lightboxIndex].desc}
+                  </p>
+
+                  <p className="font-extrabold text-gray-900 mb-4">
+                    {services[lightboxIndex].price}
+                  </p>
+
                   {!formStatus.startsWith("Message sent") ? (
                     <form onSubmit={handleSubmit} className="space-y-4">
-                      {/* Hidden field for service name */}
-                      <input type="hidden" name="service" value={services[lightboxIndex].title} />
+                      <input
+                        type="hidden"
+                        name="service"
+                        value={services[lightboxIndex].title}
+                      />
 
-                      <div>
-                        <label className="block text-gray-700 mb-1">Name</label>
-                        <input
-                          type="text"
-                          name="name"
-                          required
-                          className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-gray-700 mb-1">Email</label>
-                        <input
-                          type="email"
-                          name="email"
-                          required
-                          className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-gray-700 mb-1">Phone Number</label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          required
-                          className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-gray-700 mb-1">Message</label>
-                        <textarea
-                          name="message"
-                          rows="3"
-                          className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                        ></textarea>
-                      </div>
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Name"
+                        required
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                      />
 
-                      {/* Hidden Formspree customization */}
-                      <input type="hidden" name="_replyto" value="" />
-                      <input type="hidden" name="_subject" value={`New Service Request: ${services[lightboxIndex].title}`} />
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        required
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                      />
+
+                      <input
+                        type="tel"
+                        name="phone"
+                        placeholder="Phone Number"
+                        required
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                      />
+
+                      <textarea
+                        name="message"
+                        rows="3"
+                        placeholder="Message"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                      />
 
                       <button
                         type="submit"
@@ -232,7 +250,9 @@ export default function Services() {
                       </button>
                     </form>
                   ) : (
-                    <p className="text-green-600 font-bold text-lg">{formStatus}</p>
+                    <p className="text-green-600 font-bold text-lg">
+                      {formStatus}
+                    </p>
                   )}
                 </div>
               </motion.div>
