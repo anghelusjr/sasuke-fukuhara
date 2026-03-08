@@ -49,6 +49,7 @@ export default function Services() {
   const openLightbox = (i) => {
     window.history.pushState({ modal: true }, "");
     setLightboxIndex(i);
+    setFormStatus(""); // reset form status each time modal opens
   };
 
   const closeLightbox = () => {
@@ -67,6 +68,7 @@ export default function Services() {
         body: formData,
         headers: { Accept: "application/json" },
       });
+
       if (response.ok) {
         setFormStatus("Message sent! Thank you.");
         e.target.reset();
@@ -132,7 +134,7 @@ export default function Services() {
           })}
         </div>
 
-        {/* Lightbox with Form and vertical spacing */}
+        {/* Lightbox with Form */}
         <AnimatePresence>
           {lightboxIndex !== null && (
             <motion.div
@@ -170,51 +172,54 @@ export default function Services() {
                   <p className="font-extrabold text-gray-900 mb-4">{services[lightboxIndex].price}</p>
 
                   {/* Form */}
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <input type="hidden" name="Service" value={services[lightboxIndex].title} />
-                    <div>
-                      <label className="block text-gray-700 mb-1">Name</label>
-                      <input
-                        type="text"
-                        name="Name"
-                        required
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-700 mb-1">Email</label>
-                      <input
-                        type="email"
-                        name="Email"
-                        required
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-700 mb-1">Phone Number</label>
-                      <input
-                        type="tel"
-                        name="Phone"
-                        required
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-gray-700 mb-1">Message</label>
-                      <textarea
-                        name="Message"
-                        rows="3"
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                      ></textarea>
-                    </div>
-                    <button
-                      type="submit"
-                      className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-900"
-                    >
-                      Submit
-                    </button>
-                    {formStatus && <p className="text-gray-700 mt-2">{formStatus}</p>}
-                  </form>
+                  {!formStatus.startsWith("Message sent") ? (
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <input type="hidden" name="Service" value={services[lightboxIndex].title} />
+                      <div>
+                        <label className="block text-gray-700 mb-1">Name</label>
+                        <input
+                          type="text"
+                          name="Name"
+                          required
+                          className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-700 mb-1">Email</label>
+                        <input
+                          type="email"
+                          name="Email"
+                          required
+                          className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-700 mb-1">Phone Number</label>
+                        <input
+                          type="tel"
+                          name="Phone"
+                          required
+                          className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-700 mb-1">Message</label>
+                        <textarea
+                          name="Message"
+                          rows="3"
+                          className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                        ></textarea>
+                      </div>
+                      <button
+                        type="submit"
+                        className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-900"
+                      >
+                        Submit
+                      </button>
+                    </form>
+                  ) : (
+                    <p className="text-green-600 font-bold text-lg">{formStatus}</p>
+                  )}
                 </div>
               </motion.div>
             </motion.div>
