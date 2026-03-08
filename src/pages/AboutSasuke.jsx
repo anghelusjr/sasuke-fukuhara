@@ -1,111 +1,132 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import sasuke from "../assets/sasuke-fukuhara.webp";
 import award from "../assets/sasuke-award.webp";
-import { useState, useEffect } from "react";
 
-export default function AboutSalon() {
+export default function AboutModernFull() {
   const [showFull, setShowFull] = useState(false);
 
-  // 🔥 HANDLE PHONE BACK BUTTON
-  useEffect(() => {
-    if (showFull) {
-      // push fake state para hindi mag-back page
-      window.history.pushState({ modal: true }, "");
-    }
-
-    const handleBack = (event) => {
-      if (showFull) {
-        event.preventDefault();
-        setShowFull(false);
-      }
-    };
-
-    window.addEventListener("popstate", handleBack);
-    return () => window.removeEventListener("popstate", handleBack);
-  }, [showFull]);
-
-  // ❗ Optional: disable scroll when modal open
   useEffect(() => {
     document.body.style.overflow = showFull ? "hidden" : "auto";
   }, [showFull]);
 
+  const fadeSlide = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const modalVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
+    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } },
+  };
+
+  const stats = [
+    { number: 12, label: "Years Experience", color: "from-pink-500 to-pink-400" },
+    { number: 500, label: "Happy Clients", color: "from-purple-500 to-purple-400" },
+    { number: 50, label: "Awards & Recognitions", color: "from-indigo-500 to-indigo-400" },
+  ];
+
   return (
-    <section className="bg-white py-20" id="about">
-      <div className="max-w-6xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-12">
-        <div className="md:w-1/2">
+    <section className="relative w-dvw bg-gray-950 text-gray-900 overflow-hidden">
+      
+      {/* ===== Split Section: Photo Left, Content Right ===== */}
+      <motion.div
+        className="relative max-w-6xl mx-auto flex flex-col md:flex-row h-full min-h-screen "
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeSlide}
+      >
+        {/* Left: Full Height Photo */}
+        <motion.div
+          className="md:w-1/2 h-screen md:h-auto flex-shrink-0"
+          whileHover={{ scale: 1.02 }}
+        >
           <img
             src={sasuke}
-            alt="Sasuke Fukuhara"
-            className="rounded-xl shadow-lg"
+            alt="Kuya Mage / Sasuke Fukuhara"
+            className="w-full h-full object-cover"
           />
-        </div>
+        </motion.div>
 
-        {/* Text */}
-        <div className="md:w-1/2">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-            Sasuke Fukuhara
-          </h2>
-          <p className="text-gray-600 mb-4">
-            I’m <strong>Sasuke Fukuhara</strong> a hairstylist with 12 years of experience, and yes... I’ve seen things.
-            I’ve survived rebond fails, orange hair disasters, DIY bleach experiments, and bangs that should’ve never existed and through all of it, I stayed committed to one mission:
-            fix your hair, save your confidence, and give you a reason to take selfies again.
+        {/* Right: Content */}
+        <motion.div
+          className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center space-y-6"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0, transition: { duration: 0.6 } }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-300">Sasuke Fukuhara</h2>
+          <p className="text-gray-400 text-lg md:text-xl leading-relaxed">
+            I’m <strong>Sasuke Fukuhara</strong>, a hairstylist with 12 years of experience.
+            I’ve survived rebond fails, orange hair disasters, DIY bleach experiments, and bangs that should’ve never existed.
+            My mission? Fix your hair, save your confidence, and give you a reason to take selfies again.
           </p>
-          <p className="text-gray-600 mb-4">
-            Want hair straighter than your life decisions?
-            <strong> Rebond!</strong>
-          </p>
-          <p className="text-gray-600 mb-4">
-            Need hair smooth even if your week was rough?
-            <strong> Keratin!</strong>
-          </p>
-          <p className="text-gray-600 mb-4">
-            Want curl-by-iron so your personality finally pops?
-            <strong> Say no more!</strong>
-          </p>
-          <p className="text-gray-600 mb-4">
-            After 12 years, trust me your hair is safe, your confidence is going up, and most importantly… I’m not turning you into a meme!
+          <p className="text-gray-400 text-lg md:text-xl leading-relaxed">
+            After 12 years, your hair is safe, your confidence is going up, and most importantly… I won’t turn you into a meme!
           </p>
 
-          {/* Award Thumbnail */}
-          <div className="md:w-1/2">
-            <div className="w-full max-w-md mx-auto overflow-hidden rounded-xl shadow-lg mt-10 cursor-pointer">
-              <img
-                src={award}
-                alt="Sasuke Fukuhara"
-                onClick={() => setShowFull(true)}
-                className="transform transition duration-500 hover:scale-105"
-              />
-            </div>
+          {/* Award */}
+          <motion.div
+            className="w-36 mt-4 cursor-pointer rounded-lg overflow-hidden shadow-md"
+            whileHover={{ scale: 1.05 }}
+            onClick={() => setShowFull(true)}
+          >
+            <img src={award} alt="Award" className="w-full h-auto object-cover" />
+          </motion.div>
 
-            {/* Fullscreen Modal */}
-            {showFull && (
-              <div
-                className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 cursor-pointer"
+          {/* Stats */}
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {stats.map((stat, i) => (
+              <motion.div
+                key={i}
+                className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0, transition: { delay: i * 0.2, duration: 0.5 } }}
+                viewport={{ once: true }}
+              >
+                <h3 className={`text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${stat.color}`}>
+                  {stat.number}+
+                </h3>
+                <p className="mt-2 text-gray-700 text-center">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Fullscreen Modal for Award */}
+      <AnimatePresence>
+        {showFull && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 cursor-pointer"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={modalVariants}
+            onClick={() => setShowFull(false)}
+          >
+            <motion.div
+              className="relative max-w-4xl w-full px-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="absolute top-4 right-4 text-white text-3xl font-bold"
                 onClick={() => setShowFull(false)}
               >
-                <div
-                  className="relative max-w-4xl w-full px-6"
-                  onClick={(e) => e.stopPropagation()} // prevent close pag cliniclick ang image area
-                >
-                  {/* Close Button */}
-                  <button
-                    className="absolute top-4 right-4 text-white text-3xl font-bold"
-                    onClick={() => setShowFull(false)}
-                  >
-                    &times;
-                  </button>
-
-                  {/* Image */}
-                  <img
-                    src={award}
-                    alt="Sasuke Fukuhara"
-                    className="w-full max-h-[90vh] object-contain rounded-lg"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+                &times;
+              </button>
+              <img
+                src={award}
+                alt="Award Full"
+                className="w-full max-h-[90vh] object-contain rounded-lg"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
