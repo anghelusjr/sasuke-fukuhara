@@ -9,7 +9,7 @@ export default function Contact() {
 
     try {
       const response = await fetch(
-        "https://formspree.io/f/YOUR_FORMSPREE_ID",
+        "https://formspree.io/f/xvzwgblj",
         {
           method: "POST",
           headers: {
@@ -33,9 +33,10 @@ export default function Contact() {
   return (
     <section className="bg-gray-50 py-20" id="contact">
       <div className="max-w-3xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6">Get in Touch</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-6"> Book an appointment or ask anything. I'm here to help!</h2>
         <p className="text-gray-600 mb-8">
-          Book an appointment or ask anything. I'm here to help!
+          Submit your appointment request below. The owner will contact you to
+          confirm the schedule depending on availability.
         </p>
         <p className="text-gray-600 mb-8">
           Email Address: <strong>madjehsasuke@gmail.com</strong>
@@ -44,6 +45,9 @@ export default function Contact() {
         </p>
 
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+
+          <input type="hidden" name="_subject" value="New Appointment Request" />
+
           <input
             type="text"
             placeholder="Your Name"
@@ -70,19 +74,22 @@ export default function Contact() {
           <div className="flex flex-col items-start gap-2 p-3 border border-gray-300 rounded-lg">
             <p className="font-semibold text-gray-700 mb-1">Select Services:</p>
             <label className="flex items-center gap-2">
-              <input type="checkbox" name="services" value="Hair Rebond" />
+              <input type="checkbox" name="services[]" value="Hair Rebond" />
               Hair Rebond
             </label>
+
             <label className="flex items-center gap-2">
-              <input type="checkbox" name="services" value="Curly Settings" />
+              <input type="checkbox" name="services[]" value="Curly Settings" />
               Curly Settings
             </label>
+
             <label className="flex items-center gap-2">
-              <input type="checkbox" name="services" value="Hair Coloring" />
+              <input type="checkbox" name="services[]" value="Hair Coloring" />
               Hair Coloring
             </label>
+
             <label className="flex items-center gap-2">
-              <input type="checkbox" name="services" value="Hair Treatment" />
+              <input type="checkbox" name="services[]" value="Hair Treatment" />
               Hair Treatment
             </label>
           </div>
