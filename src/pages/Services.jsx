@@ -63,7 +63,7 @@ export default function Services() {
     setFormStatus("Sending...");
 
     try {
-      const response = await fetch("https://formspree.io/f/xvzwgblj", {
+      const response = await fetch("https://formspree.io/f/xkoqgpbb", {
         method: "POST",
         body: formData,
         headers: { Accept: "application/json" },
