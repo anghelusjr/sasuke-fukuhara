@@ -44,70 +44,73 @@ export default function Contact() {
           Phone Number: <strong>09937422193</strong>
         </p>
 
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+<form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 
-          <input type="hidden" name="_subject" value="New Appointment Request" />
+  {/* Email customization for Formspree */}
+  <input type="hidden" name="_subject" value="New Appointment Request" />
+  <input type="hidden" name="_from" value="Sasuke Fukuhara Salon <madjehsasuke@gmail.com>" />
+  <input type="hidden" name="_replyto" value="" /> {/* value will be filled dynamically from email input */}
 
-          <input
-            type="text"
-            placeholder="Your Name"
-            name="name"
-            required
-            className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
-          />
+  <input
+    type="text"
+    placeholder="Your Name"
+    name="name"
+    required
+    className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+  />
 
-          <input
-            type="email"
-            placeholder="Your Email"
-            name="email"
-            required
-            className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
-          />
+  <input
+    type="email"
+    placeholder="Your Email"
+    name="email"
+    required
+    className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+  />
 
-          <input
-            type="tel"
-            placeholder="Your Mobile"
-            name="mobile"
-            className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
-          />
+  <input
+    type="tel"
+    placeholder="Your Mobile"
+    name="mobile"
+    className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+  />
 
-          <div className="flex flex-col items-start gap-2 p-3 border border-gray-300 rounded-lg">
-            <p className="font-semibold text-gray-700 mb-1">Select Services:</p>
-            <label className="flex items-center gap-2">
-              <input type="checkbox" name="services[]" value="Hair Rebond" />
-              Hair Rebond
-            </label>
+  <div className="flex flex-col items-start gap-2 p-3 border border-gray-300 rounded-lg">
+    <p className="font-semibold text-gray-700 mb-1">Select Services:</p>
+    <label className="flex items-center gap-2">
+      <input type="checkbox" name="services[]" value="Hair Rebond" />
+      Hair Rebond
+    </label>
 
-            <label className="flex items-center gap-2">
-              <input type="checkbox" name="services[]" value="Curly Settings" />
-              Curly Settings
-            </label>
+    <label className="flex items-center gap-2">
+      <input type="checkbox" name="services[]" value="Curly Settings" />
+      Curly Settings
+    </label>
 
-            <label className="flex items-center gap-2">
-              <input type="checkbox" name="services[]" value="Hair Coloring" />
-              Hair Coloring
-            </label>
+    <label className="flex items-center gap-2">
+      <input type="checkbox" name="services[]" value="Hair Coloring" />
+      Hair Coloring
+    </label>
 
-            <label className="flex items-center gap-2">
-              <input type="checkbox" name="services[]" value="Hair Treatment" />
-              Hair Treatment
-            </label>
-          </div>
+    <label className="flex items-center gap-2">
+      <input type="checkbox" name="services[]" value="Hair Treatment" />
+      Hair Treatment
+    </label>
+  </div>
 
-          <textarea
-            name="details"
-            placeholder="Any specific request or description for your service"
-            className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            rows="4"
-          />
+  <textarea
+    name="details"
+    placeholder="Any specific request or description for your service"
+    className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+    rows="4"
+  />
 
-          <button
-            type="submit"
-            className="cursor-pointer bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors"
-          >
-            Send Message
-          </button>
-        </form>
+  <button
+    type="submit"
+    className="cursor-pointer bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors"
+  >
+    Send Message
+  </button>
+</form>
 
         {status && <p className="mt-4 text-gray-700">{status}</p>}
       </div>
