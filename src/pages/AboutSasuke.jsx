@@ -31,7 +31,7 @@ export default function AboutModernFull() {
 
   return (
     <section className="relative w-dvw bg-gray-950 text-gray-900 overflow-hidden">
-      
+
       {/* ===== Split Section: Photo Left, Content Right ===== */}
       <motion.div
         className="relative max-w-6xl mx-auto flex flex-col md:flex-row h-full min-h-screen "
@@ -74,7 +74,7 @@ export default function AboutModernFull() {
             whileHover={{ scale: 1.05 }}
             onClick={() => setShowFull(true)}
           >
-            <img src={award} alt="Award" className="w-full h-auto object-cover" />
+              <img src={award} alt="Award" className="w-full h-auto object-cover" />
           </motion.div>
 
           {/* Stats */}

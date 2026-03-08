@@ -11,6 +11,11 @@ import gallery4 from "../assets/gallery-4.webp";
 import gallery5 from "../assets/gallery-5.webp";
 import gallery6 from "../assets/gallery-6.webp";
 import gallery7 from "../assets/gallery-7.webp";
+import gallery8 from "../assets/photo2.webp";
+import gallery9 from "../assets/photo4.webp";
+import gallery10 from "../assets/photo5.webp";
+import gallery11 from "../assets/photo7.webp";
+import gallery12 from "../assets/photo9.webp";
 
 export default function Gallery() {
   // Background slider
@@ -21,7 +26,7 @@ export default function Gallery() {
   ];
 
   // Secondary gallery
-  const galleryImages = [gallery4, gallery5, gallery6, gallery7];
+  const galleryImages = [gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10,gallery11, gallery12 ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState(null);

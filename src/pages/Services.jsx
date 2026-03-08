@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import hairRebond from "../assets/hair-rebond.webp";
-import hairColor from "../assets/hair-color.webp";
-import hairTreatment from "../assets/hair-treatment.webp";
-import hairCurly from "../assets/hair-curly.webp";
+import hairColor from "../assets/photo1.webp";
+import hairTreatment from "../assets/photo3.webp";
+import hairCurly from "../assets/photo6.webp";
 
 export default function Services() {
   const services = [

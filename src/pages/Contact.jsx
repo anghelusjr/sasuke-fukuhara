@@ -9,7 +9,7 @@ export default function Contact() {
 
     try {
       const response = await fetch(
-        "https://formspree.io/f/xvzwgblj",
+        "https://formspree.io/f/xkoqgpbb",
         {
           method: "POST",
           headers: {
