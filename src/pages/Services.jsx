@@ -60,6 +60,13 @@ export default function Services() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+
+    // Set _replyto dynamically
+    formData.set("_replyto", formData.get("email"));
+
+    // Optional: Custom subject for easier inbox tracking
+    formData.set("_subject", `New Service Request: ${formData.get("service")}`);
+
     setFormStatus("Sending...");
 
     try {
@@ -174,12 +181,14 @@ export default function Services() {
                   {/* Form */}
                   {!formStatus.startsWith("Message sent") ? (
                     <form onSubmit={handleSubmit} className="space-y-4">
-                      <input type="hidden" name="Service" value={services[lightboxIndex].title} />
+                      {/* Hidden field for service name */}
+                      <input type="hidden" name="service" value={services[lightboxIndex].title} />
+
                       <div>
                         <label className="block text-gray-700 mb-1">Name</label>
                         <input
                           type="text"
-                          name="Name"
+                          name="name"
                           required
                           className="w-full border border-gray-300 rounded-lg px-4 py-2"
                         />
@@ -188,7 +197,7 @@ export default function Services() {
                         <label className="block text-gray-700 mb-1">Email</label>
                         <input
                           type="email"
-                          name="Email"
+                          name="email"
                           required
                           className="w-full border border-gray-300 rounded-lg px-4 py-2"
                         />
@@ -197,7 +206,7 @@ export default function Services() {
                         <label className="block text-gray-700 mb-1">Phone Number</label>
                         <input
                           type="tel"
-                          name="Phone"
+                          name="phone"
                           required
                           className="w-full border border-gray-300 rounded-lg px-4 py-2"
                         />
@@ -205,11 +214,16 @@ export default function Services() {
                       <div>
                         <label className="block text-gray-700 mb-1">Message</label>
                         <textarea
-                          name="Message"
+                          name="message"
                           rows="3"
                           className="w-full border border-gray-300 rounded-lg px-4 py-2"
                         ></textarea>
                       </div>
+
+                      {/* Hidden Formspree customization */}
+                      <input type="hidden" name="_replyto" value="" />
+                      <input type="hidden" name="_subject" value={`New Service Request: ${services[lightboxIndex].title}`} />
+
                       <button
                         type="submit"
                         className="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-900"
