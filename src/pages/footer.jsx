@@ -13,7 +13,7 @@ export default function Footer() {
             href="websitedesigns.art"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:underline font-[Playfair_Display]"
+            className="text-white hover:underline font-[Playfair_Display]"
           >
             WebsiteDesigns<span className="text-amber-400">.art</span>
           </a>
