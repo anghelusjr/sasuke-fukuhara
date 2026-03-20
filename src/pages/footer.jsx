@@ -10,7 +10,7 @@ export default function Footer() {
         {/* Right side - Credits */}
         <p className="text-md">
           <a
-            href="websitedesigns.art"
+            href="https://websitedesigns.art"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:underline font-[Playfair_Display]"
