@@ -11,12 +11,12 @@ export default function Footer() {
         <p className="text-sm">
           Website by{" "}
           <a
-            href="https://modern-portfolio-two-beta.vercel.app/"
+            href="websitedesigns.art"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
+            className="text-blue-400 hover:underline font-[Playfair_Display]"
           >
-            Angel Buenavista
+            WebsiteDesigns<span className="text-amber-400">.art</span>
           </a>
         </p>
       </div>
