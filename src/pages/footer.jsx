@@ -9,7 +9,6 @@ export default function Footer() {
 
         {/* Right side - Credits */}
         <p className="text-sm">
-          Website by{" "}
           <a
             href="websitedesigns.art"
             target="_blank"
