@@ -8,7 +8,7 @@ export default function Footer() {
         </p>
 
         {/* Right side - Credits */}
-        <p className="text-sm">
+        <p className="text-md">
           <a
             href="websitedesigns.art"
             target="_blank"
